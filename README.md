@@ -17,7 +17,6 @@ PHP SDK for the CX Engine App API.
   - [Pagination](#usage-pagination)
   - [Extending the SDK](#usage-extends)
 
-
 <a name="installation"></a>
 
 ## Installation
@@ -44,7 +43,7 @@ To connect directly to a tenant, instantiate `CxEngineConnector` with the tenant
 use CXEngine\AppSdk\CxEngineConnector;
 
 $api = new CxEngineConnector(
-    apiUrl: 'https://tenant.cxengine.io',
+    apiUrl: 'https://tenant.cx-engine.app',
     email: 'user@example.com',
     password: 'secret',
 );
@@ -62,15 +61,16 @@ If you need to authenticate against the central domain first and then switch to 
 use CXEngine\AppSdk\CxEngineConnector;
 
 $api = new CxEngineConnector(
-    apiUrl: 'https://app.cxengine.io',
+    apiUrl: 'https://cx-engine.app',
     email: 'user@example.com',
     password: 'secret',
     tenantId: 'workspace-uuid',
-    tenantApiUrl: 'https://tenant.cxengine.io',
+    tenantApiUrl: 'https://tenant.cx-engine.app',
 );
 ```
 
 The connector performs a two-step flow automatically:
+
 1. POST `/login` on the central domain → retrieves a central Bearer token.
 2. POST `/switch-to` with `workspace_id` using that token → retrieves a workspace-scoped token.
 3. All subsequent requests are sent to `$tenantApiUrl` with the workspace token.
@@ -214,7 +214,7 @@ class MyCustomConnector extends CxEngineConnector
 }
 
 $api = new MyCustomConnector(
-    apiUrl: 'https://tenant.cxengine.io',
+    apiUrl: 'https://tenant.cx-engine.app',
     email: 'user@example.com',
     password: 'secret',
 );
