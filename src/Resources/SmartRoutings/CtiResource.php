@@ -4,7 +4,6 @@ namespace CXEngine\AppSdk\Resources\SmartRoutings;
 
 use Saloon\Http\Response;
 use CXEngine\AppSdk\Entities\SmartRoutings\Cti;
-use CXEngine\AppSdk\Entities\SmartRoutings\CtiDestination;
 use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\GetCtisRequest;
 use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\ShowCtiRequest;
 use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\CreateCtiRequest;
@@ -13,11 +12,6 @@ use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\DeleteCtiRequest;
 use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\ExportCtisRequest;
 use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\ImportCtisRequest;
 use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\BulkDeleteCtisRequest;
-use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\GetCtiDestinationsRequest;
-use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\ShowCtiDestinationRequest;
-use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\CreateCtiDestinationRequest;
-use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\UpdateCtiDestinationRequest;
-use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\DeleteCtiDestinationRequest;
 use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\LookupCtiRequest;
 
 class CtiResource extends SmartRoutingsResource
@@ -62,33 +56,13 @@ class CtiResource extends SmartRoutingsResource
         return $this->connector->send(new BulkDeleteCtisRequest($ids));
     }
 
-    public function indexDestinations(int $ctiId, array $filters = []): Response
-    {
-        return $this->connector->send(new GetCtiDestinationsRequest($ctiId, $filters));
-    }
-
-    public function showDestination(int $ctiId, int $destId): Response
-    {
-        return $this->connector->send(new ShowCtiDestinationRequest($ctiId, $destId));
-    }
-
-    public function storeDestination(int $ctiId, CtiDestination $destination): Response
-    {
-        return $this->connector->send(new CreateCtiDestinationRequest($ctiId, $destination));
-    }
-
-    public function updateDestination(int $ctiId, CtiDestination $destination): Response
-    {
-        return $this->connector->send(new UpdateCtiDestinationRequest($ctiId, $destination));
-    }
-
-    public function destroyDestination(int $ctiId, int $destId): Response
-    {
-        return $this->connector->send(new DeleteCtiDestinationRequest($ctiId, $destId));
-    }
-
     public function lookup(array $params = []): Response
     {
         return $this->connector->send(new LookupCtiRequest($params));
+    }
+
+    public function destinations(int $ctiId): CtiDestinationResource
+    {
+        return new CtiDestinationResource($this->connector, $ctiId);
     }
 }

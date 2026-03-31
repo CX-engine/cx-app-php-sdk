@@ -115,6 +115,20 @@ $response = $api->callQueues()->timeSpans()->index();
 $response = $api->callQueues()->groups()->index();
 $response = $api->callQueues()->exceptions()->index();
 $response = $api->callQueues()->holidays()->index();
+
+// Sub-resources that require a parent ID — pass it to the accessor
+$response = $api->ctis()->destinations($ctiId)->index();
+$response = $api->ctis()->destinations($ctiId)->show($destId);
+
+$response = $api->routingFields()->options($fieldId)->index();
+
+// GeoRouting is namespaced into models, lists, and destinations
+$response = $api->geoRouting()->models()->index();
+$response = $api->geoRouting()->lists()->index();
+$response = $api->geoRouting()->lists()->destinations($listId)->index();
+
+// Survey records
+$response = $api->surveys()->records()->index();
 ```
 
 <a name="usage-responses"></a>
