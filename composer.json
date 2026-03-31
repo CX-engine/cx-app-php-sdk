@@ -1,0 +1,28 @@
+{
+    "name": "cx-engine/cx-app-php-sdk",
+    "description": "The Official CXEngine App API PHP Client/SDK",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CXEngine\\AppSdk\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bastien",
+            "email": "bastien@bluerocktel.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "nesbot/carbon": ">=2.68",
+        "illuminate/collections": ">=11.0",
+        "illuminate/support": ">=11.0",
+        "saloonphp/saloon": "^4.0",
+        "saloonphp/rate-limit-plugin": "^2.0",
+        "saloonphp/pagination-plugin": "^2.0"
+    },
+    "require-dev": {
+        "spatie/ray": "^1.37"
+    }
+}
