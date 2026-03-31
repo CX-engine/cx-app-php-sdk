@@ -108,7 +108,13 @@ $api = new CxEngineConnector(...);
 $response = $api->routingContacts()->index();
 
 // List active call queues only
-$response = $api->callQueues()->indexQueues(['active' => true]);
+$response = $api->callQueues()->index(['active' => true]);
+
+// Access call queue sub-resources
+$response = $api->callQueues()->timeSpans()->index();
+$response = $api->callQueues()->groups()->index();
+$response = $api->callQueues()->exceptions()->index();
+$response = $api->callQueues()->holidays()->index();
 ```
 
 <a name="usage-responses"></a>
