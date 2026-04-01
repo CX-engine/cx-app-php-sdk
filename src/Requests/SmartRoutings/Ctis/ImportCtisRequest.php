@@ -3,11 +3,11 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\Ctis;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 
-class ImportCtisRequest extends Request implements HasBody
+class ImportCtisRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -18,9 +18,9 @@ class ImportCtisRequest extends Request implements HasBody
         return '/smart-routings/ctis/import';
     }
 
-    public function __construct(protected array $data)
+    public function __construct(string $customerAccount, protected array $data)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

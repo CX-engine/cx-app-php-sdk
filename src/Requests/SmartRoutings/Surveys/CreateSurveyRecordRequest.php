@@ -3,12 +3,12 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\Surveys;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 use CXEngine\AppSdk\Entities\SmartRoutings\SurveyRecord;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class CreateSurveyRecordRequest extends Request implements HasBody
+class CreateSurveyRecordRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -19,9 +19,9 @@ class CreateSurveyRecordRequest extends Request implements HasBody
         return '/smart-routings/survey-records';
     }
 
-    public function __construct(protected SurveyRecord $record)
+    public function __construct(string $customerAccount, protected SurveyRecord $record)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

@@ -18,28 +18,28 @@ class GeoRoutingDestinationResource extends SmartRoutingsResource
         parent::__construct($connector);
     }
 
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetGeoRoutingDestinationsRequest($this->listId, $filters));
+        return $this->connector->send(new GetGeoRoutingDestinationsRequest($customerAccount, $this->listId, $filters));
     }
 
-    public function show(int $destId): Response
+    public function show(string $customerAccount, int $destId): Response
     {
-        return $this->connector->send(new ShowGeoRoutingDestinationRequest($this->listId, $destId));
+        return $this->connector->send(new ShowGeoRoutingDestinationRequest($customerAccount, $this->listId, $destId));
     }
 
-    public function store(GeoRoutingDestination $destination): Response
+    public function store(string $customerAccount, GeoRoutingDestination $destination): Response
     {
-        return $this->connector->send(new CreateGeoRoutingDestinationRequest($this->listId, $destination));
+        return $this->connector->send(new CreateGeoRoutingDestinationRequest($customerAccount, $this->listId, $destination));
     }
 
-    public function update(GeoRoutingDestination $destination): Response
+    public function update(string $customerAccount, GeoRoutingDestination $destination): Response
     {
-        return $this->connector->send(new UpdateGeoRoutingDestinationRequest($this->listId, $destination));
+        return $this->connector->send(new UpdateGeoRoutingDestinationRequest($customerAccount, $this->listId, $destination));
     }
 
-    public function destroy(int $destId): Response
+    public function destroy(string $customerAccount, int $destId): Response
     {
-        return $this->connector->send(new DeleteGeoRoutingDestinationRequest($this->listId, $destId));
+        return $this->connector->send(new DeleteGeoRoutingDestinationRequest($customerAccount, $this->listId, $destId));
     }
 }

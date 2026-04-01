@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\GeoRouting;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class DeleteGeoRoutingListRequest extends Request
+class DeleteGeoRoutingListRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::DELETE;
 
@@ -14,8 +14,8 @@ class DeleteGeoRoutingListRequest extends Request
         return '/smart-routings/geo/lists/' . $this->id;
     }
 
-    public function __construct(protected int $id)
+    public function __construct(string $customerAccount, protected int $id)
     {
-        //
+        parent::__construct($customerAccount);
     }
 }

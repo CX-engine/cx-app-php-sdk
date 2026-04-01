@@ -12,29 +12,29 @@ use CXEngine\AppSdk\Requests\SmartRoutings\RoutingFields\DeleteRoutingFieldReque
 
 class RoutingFieldResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetRoutingFieldsRequest($filters));
+        return $this->connector->send(new GetRoutingFieldsRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowRoutingFieldRequest($id));
+        return $this->connector->send(new ShowRoutingFieldRequest($customerAccount, $id));
     }
 
-    public function store(RoutingField $field): Response
+    public function store(string $customerAccount, RoutingField $field): Response
     {
-        return $this->connector->send(new CreateRoutingFieldRequest($field));
+        return $this->connector->send(new CreateRoutingFieldRequest($customerAccount, $field));
     }
 
-    public function update(RoutingField $field): Response
+    public function update(string $customerAccount, RoutingField $field): Response
     {
-        return $this->connector->send(new UpdateRoutingFieldRequest($field));
+        return $this->connector->send(new UpdateRoutingFieldRequest($customerAccount, $field));
     }
 
-    public function destroy(int $id): Response
+    public function destroy(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new DeleteRoutingFieldRequest($id));
+        return $this->connector->send(new DeleteRoutingFieldRequest($customerAccount, $id));
     }
 
     public function options(int $fieldId): RoutingFieldOptionResource

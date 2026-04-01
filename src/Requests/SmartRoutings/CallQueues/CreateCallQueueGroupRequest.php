@@ -3,12 +3,12 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\CallQueues;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 use CXEngine\AppSdk\Entities\SmartRoutings\CallQueueGroup;
 
-class CreateCallQueueGroupRequest extends Request implements HasBody
+class CreateCallQueueGroupRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -19,9 +19,9 @@ class CreateCallQueueGroupRequest extends Request implements HasBody
         return '/smart-routings/call-queues/groups';
     }
 
-    public function __construct(protected CallQueueGroup $group)
+    public function __construct(string $customerAccount, protected CallQueueGroup $group)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

@@ -14,38 +14,38 @@ use CXEngine\AppSdk\Requests\SmartRoutings\CallQueues\BulkDeleteCallQueueTimeSpa
 
 class CallQueueTimeSpanResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetCallQueueTimeSpansRequest($filters));
+        return $this->connector->send(new GetCallQueueTimeSpansRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowCallQueueTimeSpanRequest($id));
+        return $this->connector->send(new ShowCallQueueTimeSpanRequest($customerAccount, $id));
     }
 
-    public function store(CallQueueTimeSpan $timeSpan): Response
+    public function store(string $customerAccount, CallQueueTimeSpan $timeSpan): Response
     {
-        return $this->connector->send(new CreateCallQueueTimeSpanRequest($timeSpan));
+        return $this->connector->send(new CreateCallQueueTimeSpanRequest($customerAccount, $timeSpan));
     }
 
-    public function update(CallQueueTimeSpan $timeSpan): Response
+    public function update(string $customerAccount, CallQueueTimeSpan $timeSpan): Response
     {
-        return $this->connector->send(new UpdateCallQueueTimeSpanRequest($timeSpan));
+        return $this->connector->send(new UpdateCallQueueTimeSpanRequest($customerAccount, $timeSpan));
     }
 
-    public function destroy(int $id): Response
+    public function destroy(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new DeleteCallQueueTimeSpanRequest($id));
+        return $this->connector->send(new DeleteCallQueueTimeSpanRequest($customerAccount, $id));
     }
 
-    public function bulkStore(array $data): Response
+    public function bulkStore(string $customerAccount, array $data): Response
     {
-        return $this->connector->send(new BulkCreateCallQueueTimeSpansRequest($data));
+        return $this->connector->send(new BulkCreateCallQueueTimeSpansRequest($customerAccount, $data));
     }
 
-    public function bulkDestroy(array $ids): Response
+    public function bulkDestroy(string $customerAccount, array $ids): Response
     {
-        return $this->connector->send(new BulkDeleteCallQueueTimeSpansRequest($ids));
+        return $this->connector->send(new BulkDeleteCallQueueTimeSpansRequest($customerAccount, $ids));
     }
 }

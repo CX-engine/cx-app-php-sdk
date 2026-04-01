@@ -17,8 +17,8 @@ class GeoRoutingResource extends SmartRoutingsResource
         return new GeoRoutingListResource($this->connector);
     }
 
-    public function lookup(array $params = []): Response
+    public function lookup(string $customerAccount, array $params = []): Response
     {
-        return $this->connector->send(new LookupGeoRoutingDestinationRequest($params));
+        return $this->connector->send(new LookupGeoRoutingDestinationRequest($customerAccount, $params));
     }
 }

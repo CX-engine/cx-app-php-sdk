@@ -3,12 +3,12 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\RoutingFields;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 use CXEngine\AppSdk\Entities\SmartRoutings\RoutingFieldOption;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class CreateRoutingFieldOptionRequest extends Request implements HasBody
+class CreateRoutingFieldOptionRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -19,9 +19,9 @@ class CreateRoutingFieldOptionRequest extends Request implements HasBody
         return '/smart-routings/fields/' . $this->fieldId . '/options';
     }
 
-    public function __construct(protected int $fieldId, protected RoutingFieldOption $option)
+    public function __construct(string $customerAccount, protected int $fieldId, protected RoutingFieldOption $option)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

@@ -18,28 +18,28 @@ class RoutingFieldOptionResource extends SmartRoutingsResource
         parent::__construct($connector);
     }
 
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetRoutingFieldOptionsRequest($this->fieldId, $filters));
+        return $this->connector->send(new GetRoutingFieldOptionsRequest($customerAccount, $this->fieldId, $filters));
     }
 
-    public function show(int $optionId): Response
+    public function show(string $customerAccount, int $optionId): Response
     {
-        return $this->connector->send(new ShowRoutingFieldOptionRequest($this->fieldId, $optionId));
+        return $this->connector->send(new ShowRoutingFieldOptionRequest($customerAccount, $this->fieldId, $optionId));
     }
 
-    public function store(RoutingFieldOption $option): Response
+    public function store(string $customerAccount, RoutingFieldOption $option): Response
     {
-        return $this->connector->send(new CreateRoutingFieldOptionRequest($this->fieldId, $option));
+        return $this->connector->send(new CreateRoutingFieldOptionRequest($customerAccount, $this->fieldId, $option));
     }
 
-    public function update(RoutingFieldOption $option): Response
+    public function update(string $customerAccount, RoutingFieldOption $option): Response
     {
-        return $this->connector->send(new UpdateRoutingFieldOptionRequest($this->fieldId, $option));
+        return $this->connector->send(new UpdateRoutingFieldOptionRequest($customerAccount, $this->fieldId, $option));
     }
 
-    public function destroy(int $optionId): Response
+    public function destroy(string $customerAccount, int $optionId): Response
     {
-        return $this->connector->send(new DeleteRoutingFieldOptionRequest($this->fieldId, $optionId));
+        return $this->connector->send(new DeleteRoutingFieldOptionRequest($customerAccount, $this->fieldId, $optionId));
     }
 }

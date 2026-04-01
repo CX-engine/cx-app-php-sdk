@@ -8,13 +8,13 @@ use CXEngine\AppSdk\Requests\SmartRoutings\GeoRouting\ShowGeoRoutingModelRequest
 
 class GeoRoutingModelResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetGeoRoutingModelsRequest($filters));
+        return $this->connector->send(new GetGeoRoutingModelsRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowGeoRoutingModelRequest($id));
+        return $this->connector->send(new ShowGeoRoutingModelRequest($customerAccount, $id));
     }
 }

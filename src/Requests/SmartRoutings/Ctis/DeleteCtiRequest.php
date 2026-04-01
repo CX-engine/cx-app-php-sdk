@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\Ctis;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class DeleteCtiRequest extends Request
+class DeleteCtiRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::DELETE;
 
@@ -14,8 +14,8 @@ class DeleteCtiRequest extends Request
         return '/smart-routings/ctis/' . $this->id;
     }
 
-    public function __construct(protected int $id)
+    public function __construct(string $customerAccount, protected int $id)
     {
-        //
+        parent::__construct($customerAccount);
     }
 }

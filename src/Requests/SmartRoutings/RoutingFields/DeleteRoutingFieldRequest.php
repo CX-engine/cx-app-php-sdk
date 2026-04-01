@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\RoutingFields;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class DeleteRoutingFieldRequest extends Request
+class DeleteRoutingFieldRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::DELETE;
 
@@ -14,8 +14,8 @@ class DeleteRoutingFieldRequest extends Request
         return '/smart-routings/fields/' . $this->id;
     }
 
-    public function __construct(protected int $id)
+    public function __construct(string $customerAccount, protected int $id)
     {
-        //
+        parent::__construct($customerAccount);
     }
 }

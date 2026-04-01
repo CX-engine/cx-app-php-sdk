@@ -16,49 +16,49 @@ use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\LookupCtiRequest;
 
 class CtiResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetCtisRequest($filters));
+        return $this->connector->send(new GetCtisRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowCtiRequest($id));
+        return $this->connector->send(new ShowCtiRequest($customerAccount, $id));
     }
 
-    public function store(Cti $cti): Response
+    public function store(string $customerAccount, Cti $cti): Response
     {
-        return $this->connector->send(new CreateCtiRequest($cti));
+        return $this->connector->send(new CreateCtiRequest($customerAccount, $cti));
     }
 
-    public function update(Cti $cti): Response
+    public function update(string $customerAccount, Cti $cti): Response
     {
-        return $this->connector->send(new UpdateCtiRequest($cti));
+        return $this->connector->send(new UpdateCtiRequest($customerAccount, $cti));
     }
 
-    public function destroy(int $id): Response
+    public function destroy(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new DeleteCtiRequest($id));
+        return $this->connector->send(new DeleteCtiRequest($customerAccount, $id));
     }
 
-    public function export(): Response
+    public function export(string $customerAccount): Response
     {
-        return $this->connector->send(new ExportCtisRequest());
+        return $this->connector->send(new ExportCtisRequest($customerAccount));
     }
 
-    public function import(array $data): Response
+    public function import(string $customerAccount, array $data): Response
     {
-        return $this->connector->send(new ImportCtisRequest($data));
+        return $this->connector->send(new ImportCtisRequest($customerAccount, $data));
     }
 
-    public function bulkDestroy(array $ids): Response
+    public function bulkDestroy(string $customerAccount, array $ids): Response
     {
-        return $this->connector->send(new BulkDeleteCtisRequest($ids));
+        return $this->connector->send(new BulkDeleteCtisRequest($customerAccount, $ids));
     }
 
-    public function lookup(array $params = []): Response
+    public function lookup(string $customerAccount, array $params = []): Response
     {
-        return $this->connector->send(new LookupCtiRequest($params));
+        return $this->connector->send(new LookupCtiRequest($customerAccount, $params));
     }
 
     public function destinations(int $ctiId): CtiDestinationResource

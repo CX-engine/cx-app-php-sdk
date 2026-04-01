@@ -12,28 +12,28 @@ use CXEngine\AppSdk\Requests\SmartRoutings\CfdTokens\DeleteCfdTokenRequest;
 
 class CfdTokenResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetCfdTokensRequest($filters));
+        return $this->connector->send(new GetCfdTokensRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowCfdTokenRequest($id));
+        return $this->connector->send(new ShowCfdTokenRequest($customerAccount, $id));
     }
 
-    public function store(CfdToken $token): Response
+    public function store(string $customerAccount, CfdToken $token): Response
     {
-        return $this->connector->send(new CreateCfdTokenRequest($token));
+        return $this->connector->send(new CreateCfdTokenRequest($customerAccount, $token));
     }
 
-    public function update(CfdToken $token): Response
+    public function update(string $customerAccount, CfdToken $token): Response
     {
-        return $this->connector->send(new UpdateCfdTokenRequest($token));
+        return $this->connector->send(new UpdateCfdTokenRequest($customerAccount, $token));
     }
 
-    public function destroy(int $id): Response
+    public function destroy(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new DeleteCfdTokenRequest($id));
+        return $this->connector->send(new DeleteCfdTokenRequest($customerAccount, $id));
     }
 }

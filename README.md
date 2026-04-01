@@ -107,28 +107,28 @@ $api = new CxEngineConnector(...);
 // List all routing contacts
 $response = $api->routingContacts()->index();
 
-// List active call queues only
-$response = $api->callQueues()->index(['active' => true]);
+// List active call queues — all smart routing methods require a customer account
+$response = $api->callQueues()->index('ACC0001', ['active' => true]);
 
 // Access call queue sub-resources
-$response = $api->callQueues()->timeSpans()->index();
-$response = $api->callQueues()->groups()->index();
-$response = $api->callQueues()->exceptions()->index();
-$response = $api->callQueues()->holidays()->index();
+$response = $api->callQueues()->timeSpans()->index('ACC0001');
+$response = $api->callQueues()->groups()->index('ACC0001');
+$response = $api->callQueues()->exceptions()->index('ACC0001');
+$response = $api->callQueues()->holidays()->index('ACC0001');
 
 // Sub-resources that require a parent ID — pass it to the accessor
-$response = $api->ctis()->destinations($ctiId)->index();
-$response = $api->ctis()->destinations($ctiId)->show($destId);
+$response = $api->ctis()->destinations($ctiId)->index('ACC0001');
+$response = $api->ctis()->destinations($ctiId)->show('ACC0001', $destId);
 
-$response = $api->routingFields()->options($fieldId)->index();
+$response = $api->routingFields()->options($fieldId)->index('ACC0001');
 
 // GeoRouting is namespaced into models, lists, and destinations
-$response = $api->geoRouting()->models()->index();
-$response = $api->geoRouting()->lists()->index();
-$response = $api->geoRouting()->lists()->destinations($listId)->index();
+$response = $api->geoRouting()->models()->index('ACC0001');
+$response = $api->geoRouting()->lists()->index('ACC0001');
+$response = $api->geoRouting()->lists()->destinations($listId)->index('ACC0001');
 
 // Survey records
-$response = $api->surveys()->records()->index();
+$response = $api->surveys()->records()->index('ACC0001');
 ```
 
 <a name="usage-responses"></a>

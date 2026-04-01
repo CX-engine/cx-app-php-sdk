@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\CallQueues;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class DeleteCallQueueTimeSpanRequest extends Request
+class DeleteCallQueueTimeSpanRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::DELETE;
 
@@ -14,8 +14,8 @@ class DeleteCallQueueTimeSpanRequest extends Request
         return '/smart-routings/call-queues/time-spans/' . $this->id;
     }
 
-    public function __construct(protected int $id)
+    public function __construct(string $customerAccount, protected int $id)
     {
-        //
+        parent::__construct($customerAccount);
     }
 }

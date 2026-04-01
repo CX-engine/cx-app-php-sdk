@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\Ctis;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class GetCtiDestinationsRequest extends Request
+class GetCtiDestinationsRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::GET;
 
@@ -14,13 +14,13 @@ class GetCtiDestinationsRequest extends Request
         return '/smart-routings/ctis/' . $this->ctiId . '/destinations';
     }
 
-    public function __construct(protected int $ctiId, protected array $filters = [])
+    public function __construct(string $customerAccount, protected int $ctiId, protected array $filters = [])
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultQuery(): array
     {
-        return $this->filters;
+        return [...parent::defaultQuery(), ...$this->filters];
     }
 }

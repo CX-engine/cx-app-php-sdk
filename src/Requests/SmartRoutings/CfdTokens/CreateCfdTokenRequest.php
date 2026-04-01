@@ -3,12 +3,12 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\CfdTokens;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 use CXEngine\AppSdk\Entities\SmartRoutings\CfdToken;
 
-class CreateCfdTokenRequest extends Request implements HasBody
+class CreateCfdTokenRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -19,9 +19,9 @@ class CreateCfdTokenRequest extends Request implements HasBody
         return '/smart-routings/cfd-tokens';
     }
 
-    public function __construct(protected CfdToken $token)
+    public function __construct(string $customerAccount, protected CfdToken $token)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

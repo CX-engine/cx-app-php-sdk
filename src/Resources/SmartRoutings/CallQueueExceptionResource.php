@@ -12,28 +12,28 @@ use CXEngine\AppSdk\Requests\SmartRoutings\CallQueues\DeleteCallQueueExceptionRe
 
 class CallQueueExceptionResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetCallQueueExceptionsRequest($filters));
+        return $this->connector->send(new GetCallQueueExceptionsRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowCallQueueExceptionRequest($id));
+        return $this->connector->send(new ShowCallQueueExceptionRequest($customerAccount, $id));
     }
 
-    public function store(CallQueueException $exception): Response
+    public function store(string $customerAccount, CallQueueException $exception): Response
     {
-        return $this->connector->send(new CreateCallQueueExceptionRequest($exception));
+        return $this->connector->send(new CreateCallQueueExceptionRequest($customerAccount, $exception));
     }
 
-    public function update(CallQueueException $exception): Response
+    public function update(string $customerAccount, CallQueueException $exception): Response
     {
-        return $this->connector->send(new UpdateCallQueueExceptionRequest($exception));
+        return $this->connector->send(new UpdateCallQueueExceptionRequest($customerAccount, $exception));
     }
 
-    public function destroy(int $id): Response
+    public function destroy(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new DeleteCallQueueExceptionRequest($id));
+        return $this->connector->send(new DeleteCallQueueExceptionRequest($customerAccount, $id));
     }
 }

@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\RoutingFields;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class ShowRoutingFieldRequest extends Request
+class ShowRoutingFieldRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::GET;
 
@@ -14,8 +14,8 @@ class ShowRoutingFieldRequest extends Request
         return '/smart-routings/fields/' . $this->id;
     }
 
-    public function __construct(protected int $id)
+    public function __construct(string $customerAccount, protected int $id)
     {
-        //
+        parent::__construct($customerAccount);
     }
 }

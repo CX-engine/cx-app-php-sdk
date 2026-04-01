@@ -3,11 +3,11 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\Ctis;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 
-class BulkDeleteCtisRequest extends Request implements HasBody
+class BulkDeleteCtisRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -18,9 +18,9 @@ class BulkDeleteCtisRequest extends Request implements HasBody
         return '/smart-routings/ctis/bulk';
     }
 
-    public function __construct(protected array $ids)
+    public function __construct(string $customerAccount, protected array $ids)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

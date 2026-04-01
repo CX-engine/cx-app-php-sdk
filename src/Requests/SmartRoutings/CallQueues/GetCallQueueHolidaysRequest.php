@@ -3,14 +3,19 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\CallQueues;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class GetCallQueueHolidaysRequest extends Request
+class GetCallQueueHolidaysRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::GET;
 
     public function resolveEndpoint(): string
     {
         return '/smart-routings/call-queues/exceptions/holidays';
+    }
+
+    public function __construct(string $customerAccount)
+    {
+        parent::__construct($customerAccount);
     }
 }

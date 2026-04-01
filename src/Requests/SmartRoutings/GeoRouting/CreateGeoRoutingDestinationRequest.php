@@ -3,12 +3,12 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\GeoRouting;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 use CXEngine\AppSdk\Entities\SmartRoutings\GeoRoutingDestination;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class CreateGeoRoutingDestinationRequest extends Request implements HasBody
+class CreateGeoRoutingDestinationRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -19,9 +19,9 @@ class CreateGeoRoutingDestinationRequest extends Request implements HasBody
         return '/smart-routings/geo/lists/' . $this->listId . '/destinations';
     }
 
-    public function __construct(protected int $listId, protected GeoRoutingDestination $destination)
+    public function __construct(string $customerAccount, protected int $listId, protected GeoRoutingDestination $destination)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

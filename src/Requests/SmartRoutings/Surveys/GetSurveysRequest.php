@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\Surveys;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class GetSurveysRequest extends Request
+class GetSurveysRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::GET;
 
@@ -14,13 +14,13 @@ class GetSurveysRequest extends Request
         return '/smart-routings/surveys';
     }
 
-    public function __construct(protected array $filters = [])
+    public function __construct(string $customerAccount, protected array $filters = [])
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultQuery(): array
     {
-        return $this->filters;
+        return [...parent::defaultQuery(), ...$this->filters];
     }
 }

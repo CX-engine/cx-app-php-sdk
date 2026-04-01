@@ -15,43 +15,43 @@ use CXEngine\AppSdk\Requests\SmartRoutings\RoutingContacts\BulkDeleteRoutingCont
 
 class RoutingContactResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetRoutingContactsRequest($filters));
+        return $this->connector->send(new GetRoutingContactsRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowRoutingContactRequest($id));
+        return $this->connector->send(new ShowRoutingContactRequest($customerAccount, $id));
     }
 
-    public function store(RoutingContact $contact): Response
+    public function store(string $customerAccount, RoutingContact $contact): Response
     {
-        return $this->connector->send(new CreateRoutingContactRequest($contact));
+        return $this->connector->send(new CreateRoutingContactRequest($customerAccount, $contact));
     }
 
-    public function update(RoutingContact $contact): Response
+    public function update(string $customerAccount, RoutingContact $contact): Response
     {
-        return $this->connector->send(new UpdateRoutingContactRequest($contact));
+        return $this->connector->send(new UpdateRoutingContactRequest($customerAccount, $contact));
     }
 
-    public function destroy(int $id): Response
+    public function destroy(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new DeleteRoutingContactRequest($id));
+        return $this->connector->send(new DeleteRoutingContactRequest($customerAccount, $id));
     }
 
-    public function export(): Response
+    public function export(string $customerAccount): Response
     {
-        return $this->connector->send(new ExportRoutingContactsRequest());
+        return $this->connector->send(new ExportRoutingContactsRequest($customerAccount));
     }
 
-    public function import(array $data): Response
+    public function import(string $customerAccount, array $data): Response
     {
-        return $this->connector->send(new ImportRoutingContactsRequest($data));
+        return $this->connector->send(new ImportRoutingContactsRequest($customerAccount, $data));
     }
 
-    public function bulkDestroy(array $ids): Response
+    public function bulkDestroy(string $customerAccount, array $ids): Response
     {
-        return $this->connector->send(new BulkDeleteRoutingContactsRequest($ids));
+        return $this->connector->send(new BulkDeleteRoutingContactsRequest($customerAccount, $ids));
     }
 }

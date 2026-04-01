@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\GeoRouting;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class ShowGeoRoutingModelRequest extends Request
+class ShowGeoRoutingModelRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::GET;
 
@@ -14,8 +14,8 @@ class ShowGeoRoutingModelRequest extends Request
         return '/smart-routings/geo/models/' . $this->id;
     }
 
-    public function __construct(protected int $id)
+    public function __construct(string $customerAccount, protected int $id)
     {
-        //
+        parent::__construct($customerAccount);
     }
 }

@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\CallQueues;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class ShowCallQueueRequest extends Request
+class ShowCallQueueRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::GET;
 
@@ -14,8 +14,8 @@ class ShowCallQueueRequest extends Request
         return '/smart-routings/call-queues/queues/' . $this->id;
     }
 
-    public function __construct(protected int $id)
+    public function __construct(string $customerAccount, protected int $id)
     {
-        //
+        parent::__construct($customerAccount);
     }
 }

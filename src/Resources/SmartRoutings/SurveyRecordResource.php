@@ -10,18 +10,18 @@ use CXEngine\AppSdk\Requests\SmartRoutings\Surveys\CreateSurveyRecordRequest;
 
 class SurveyRecordResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetSurveyRecordsRequest($filters));
+        return $this->connector->send(new GetSurveyRecordsRequest($customerAccount, $filters));
     }
 
-    public function export(): Response
+    public function export(string $customerAccount): Response
     {
-        return $this->connector->send(new ExportSurveyRecordsRequest());
+        return $this->connector->send(new ExportSurveyRecordsRequest($customerAccount));
     }
 
-    public function store(SurveyRecord $record): Response
+    public function store(string $customerAccount, SurveyRecord $record): Response
     {
-        return $this->connector->send(new CreateSurveyRecordRequest($record));
+        return $this->connector->send(new CreateSurveyRecordRequest($customerAccount, $record));
     }
 }

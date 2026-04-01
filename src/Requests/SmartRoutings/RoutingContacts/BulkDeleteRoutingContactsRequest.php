@@ -3,11 +3,11 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\RoutingContacts;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class BulkDeleteRoutingContactsRequest extends Request implements HasBody
+class BulkDeleteRoutingContactsRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -18,9 +18,9 @@ class BulkDeleteRoutingContactsRequest extends Request implements HasBody
         return '/smart-routings/contacts/bulk';
     }
 
-    public function __construct(protected array $ids)
+    public function __construct(string $customerAccount, protected array $ids)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

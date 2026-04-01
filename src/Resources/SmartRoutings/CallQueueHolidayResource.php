@@ -9,13 +9,13 @@ use CXEngine\AppSdk\Requests\SmartRoutings\CallQueues\CreateCallQueueHolidayRequ
 
 class CallQueueHolidayResource extends SmartRoutingsResource
 {
-    public function index(): Response
+    public function index(string $customerAccount): Response
     {
-        return $this->connector->send(new GetCallQueueHolidaysRequest());
+        return $this->connector->send(new GetCallQueueHolidaysRequest($customerAccount));
     }
 
-    public function store(CallQueueException $exception): Response
+    public function store(string $customerAccount, CallQueueException $exception): Response
     {
-        return $this->connector->send(new CreateCallQueueHolidayRequest($exception));
+        return $this->connector->send(new CreateCallQueueHolidayRequest($customerAccount, $exception));
     }
 }

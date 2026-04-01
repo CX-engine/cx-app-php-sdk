@@ -3,12 +3,12 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\Ctis;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 use CXEngine\AppSdk\Entities\SmartRoutings\CtiDestination;
 
-class CreateCtiDestinationRequest extends Request implements HasBody
+class CreateCtiDestinationRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -19,9 +19,9 @@ class CreateCtiDestinationRequest extends Request implements HasBody
         return '/smart-routings/ctis/' . $this->ctiId . '/destinations';
     }
 
-    public function __construct(protected int $ctiId, protected CtiDestination $destination)
+    public function __construct(string $customerAccount, protected int $ctiId, protected CtiDestination $destination)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

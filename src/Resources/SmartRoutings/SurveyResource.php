@@ -12,29 +12,29 @@ use CXEngine\AppSdk\Requests\SmartRoutings\Surveys\DeleteSurveyRequest;
 
 class SurveyResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetSurveysRequest($filters));
+        return $this->connector->send(new GetSurveysRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowSurveyRequest($id));
+        return $this->connector->send(new ShowSurveyRequest($customerAccount, $id));
     }
 
-    public function store(Survey $survey): Response
+    public function store(string $customerAccount, Survey $survey): Response
     {
-        return $this->connector->send(new CreateSurveyRequest($survey));
+        return $this->connector->send(new CreateSurveyRequest($customerAccount, $survey));
     }
 
-    public function update(Survey $survey): Response
+    public function update(string $customerAccount, Survey $survey): Response
     {
-        return $this->connector->send(new UpdateSurveyRequest($survey));
+        return $this->connector->send(new UpdateSurveyRequest($customerAccount, $survey));
     }
 
-    public function destroy(int $id): Response
+    public function destroy(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new DeleteSurveyRequest($id));
+        return $this->connector->send(new DeleteSurveyRequest($customerAccount, $id));
     }
 
     public function records(): SurveyRecordResource

@@ -13,34 +13,34 @@ use CXEngine\AppSdk\Requests\SmartRoutings\CallQueues\LookupCallQueueRequest;
 
 class CallQueueResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetCallQueuesRequest($filters));
+        return $this->connector->send(new GetCallQueuesRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowCallQueueRequest($id));
+        return $this->connector->send(new ShowCallQueueRequest($customerAccount, $id));
     }
 
-    public function store(CallQueue $queue): Response
+    public function store(string $customerAccount, CallQueue $queue): Response
     {
-        return $this->connector->send(new CreateCallQueueRequest($queue));
+        return $this->connector->send(new CreateCallQueueRequest($customerAccount, $queue));
     }
 
-    public function update(CallQueue $queue): Response
+    public function update(string $customerAccount, CallQueue $queue): Response
     {
-        return $this->connector->send(new UpdateCallQueueRequest($queue));
+        return $this->connector->send(new UpdateCallQueueRequest($customerAccount, $queue));
     }
 
-    public function destroy(int $id): Response
+    public function destroy(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new DeleteCallQueueRequest($id));
+        return $this->connector->send(new DeleteCallQueueRequest($customerAccount, $id));
     }
 
-    public function lookup(array $params = []): Response
+    public function lookup(string $customerAccount, array $params = []): Response
     {
-        return $this->connector->send(new LookupCallQueueRequest($params));
+        return $this->connector->send(new LookupCallQueueRequest($customerAccount, $params));
     }
 
     public function groups(): CallQueueGroupResource

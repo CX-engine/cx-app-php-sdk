@@ -12,29 +12,29 @@ use CXEngine\AppSdk\Requests\SmartRoutings\GeoRouting\DeleteGeoRoutingListReques
 
 class GeoRoutingListResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetGeoRoutingListsRequest($filters));
+        return $this->connector->send(new GetGeoRoutingListsRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowGeoRoutingListRequest($id));
+        return $this->connector->send(new ShowGeoRoutingListRequest($customerAccount, $id));
     }
 
-    public function store(GeoRoutingList $list): Response
+    public function store(string $customerAccount, GeoRoutingList $list): Response
     {
-        return $this->connector->send(new CreateGeoRoutingListRequest($list));
+        return $this->connector->send(new CreateGeoRoutingListRequest($customerAccount, $list));
     }
 
-    public function update(GeoRoutingList $list): Response
+    public function update(string $customerAccount, GeoRoutingList $list): Response
     {
-        return $this->connector->send(new UpdateGeoRoutingListRequest($list));
+        return $this->connector->send(new UpdateGeoRoutingListRequest($customerAccount, $list));
     }
 
-    public function destroy(int $id): Response
+    public function destroy(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new DeleteGeoRoutingListRequest($id));
+        return $this->connector->send(new DeleteGeoRoutingListRequest($customerAccount, $id));
     }
 
     public function destinations(int $listId): GeoRoutingDestinationResource

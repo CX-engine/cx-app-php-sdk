@@ -3,12 +3,12 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\CallQueues;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 use CXEngine\AppSdk\Entities\SmartRoutings\CallQueueException;
 
-class CreateCallQueueExceptionRequest extends Request implements HasBody
+class CreateCallQueueExceptionRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -19,9 +19,9 @@ class CreateCallQueueExceptionRequest extends Request implements HasBody
         return '/smart-routings/call-queues/exceptions';
     }
 
-    public function __construct(protected CallQueueException $exception)
+    public function __construct(string $customerAccount, protected CallQueueException $exception)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

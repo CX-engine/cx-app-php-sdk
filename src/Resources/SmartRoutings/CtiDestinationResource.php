@@ -18,28 +18,28 @@ class CtiDestinationResource extends SmartRoutingsResource
         parent::__construct($connector);
     }
 
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetCtiDestinationsRequest($this->ctiId, $filters));
+        return $this->connector->send(new GetCtiDestinationsRequest($customerAccount, $this->ctiId, $filters));
     }
 
-    public function show(int $destId): Response
+    public function show(string $customerAccount, int $destId): Response
     {
-        return $this->connector->send(new ShowCtiDestinationRequest($this->ctiId, $destId));
+        return $this->connector->send(new ShowCtiDestinationRequest($customerAccount, $this->ctiId, $destId));
     }
 
-    public function store(CtiDestination $destination): Response
+    public function store(string $customerAccount, CtiDestination $destination): Response
     {
-        return $this->connector->send(new CreateCtiDestinationRequest($this->ctiId, $destination));
+        return $this->connector->send(new CreateCtiDestinationRequest($customerAccount, $this->ctiId, $destination));
     }
 
-    public function update(CtiDestination $destination): Response
+    public function update(string $customerAccount, CtiDestination $destination): Response
     {
-        return $this->connector->send(new UpdateCtiDestinationRequest($this->ctiId, $destination));
+        return $this->connector->send(new UpdateCtiDestinationRequest($customerAccount, $this->ctiId, $destination));
     }
 
-    public function destroy(int $destId): Response
+    public function destroy(string $customerAccount, int $destId): Response
     {
-        return $this->connector->send(new DeleteCtiDestinationRequest($this->ctiId, $destId));
+        return $this->connector->send(new DeleteCtiDestinationRequest($customerAccount, $this->ctiId, $destId));
     }
 }

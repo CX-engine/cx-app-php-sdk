@@ -3,12 +3,12 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\RoutingContacts;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 use CXEngine\AppSdk\Entities\SmartRoutings\RoutingContact;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class CreateRoutingContactRequest extends Request implements HasBody
+class CreateRoutingContactRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -19,9 +19,9 @@ class CreateRoutingContactRequest extends Request implements HasBody
         return '/smart-routings/contacts';
     }
 
-    public function __construct(protected RoutingContact $contact)
+    public function __construct(string $customerAccount, protected RoutingContact $contact)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\GeoRouting;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class LookupGeoRoutingDestinationRequest extends Request
+class LookupGeoRoutingDestinationRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::GET;
 
@@ -14,13 +14,13 @@ class LookupGeoRoutingDestinationRequest extends Request
         return '/smart-routings/geo/destinations/lookup';
     }
 
-    public function __construct(protected array $params = [])
+    public function __construct(string $customerAccount, protected array $params = [])
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultQuery(): array
     {
-        return $this->params;
+        return [...parent::defaultQuery(), ...$this->params];
     }
 }

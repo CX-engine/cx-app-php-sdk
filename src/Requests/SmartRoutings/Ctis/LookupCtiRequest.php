@@ -3,9 +3,9 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\Ctis;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 
-class LookupCtiRequest extends Request
+class LookupCtiRequest extends CustomerScopedRequest
 {
     protected Method $method = Method::GET;
 
@@ -14,13 +14,13 @@ class LookupCtiRequest extends Request
         return '/smart-routings/ctis/lookup';
     }
 
-    public function __construct(protected array $params = [])
+    public function __construct(string $customerAccount, protected array $params = [])
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultQuery(): array
     {
-        return $this->params;
+        return [...parent::defaultQuery(), ...$this->params];
     }
 }

@@ -3,12 +3,12 @@
 namespace CXEngine\AppSdk\Requests\SmartRoutings\CallQueues;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
+use CXEngine\AppSdk\Requests\CustomerScopedRequest;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Traits\Body\HasJsonBody;
 use CXEngine\AppSdk\Entities\SmartRoutings\CallQueueTimeSpan;
 
-class CreateCallQueueTimeSpanRequest extends Request implements HasBody
+class CreateCallQueueTimeSpanRequest extends CustomerScopedRequest implements HasBody
 {
     use HasJsonBody;
 
@@ -19,9 +19,9 @@ class CreateCallQueueTimeSpanRequest extends Request implements HasBody
         return '/smart-routings/call-queues/time-spans';
     }
 
-    public function __construct(protected CallQueueTimeSpan $timeSpan)
+    public function __construct(string $customerAccount, protected CallQueueTimeSpan $timeSpan)
     {
-        //
+        parent::__construct($customerAccount);
     }
 
     protected function defaultBody(): array

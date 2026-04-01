@@ -12,28 +12,28 @@ use CXEngine\AppSdk\Requests\SmartRoutings\CallQueues\DeleteCallQueueGroupReques
 
 class CallQueueGroupResource extends SmartRoutingsResource
 {
-    public function index(array $filters = []): Response
+    public function index(string $customerAccount, array $filters = []): Response
     {
-        return $this->connector->send(new GetCallQueueGroupsRequest($filters));
+        return $this->connector->send(new GetCallQueueGroupsRequest($customerAccount, $filters));
     }
 
-    public function show(int $id): Response
+    public function show(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new ShowCallQueueGroupRequest($id));
+        return $this->connector->send(new ShowCallQueueGroupRequest($customerAccount, $id));
     }
 
-    public function store(CallQueueGroup $group): Response
+    public function store(string $customerAccount, CallQueueGroup $group): Response
     {
-        return $this->connector->send(new CreateCallQueueGroupRequest($group));
+        return $this->connector->send(new CreateCallQueueGroupRequest($customerAccount, $group));
     }
 
-    public function update(CallQueueGroup $group): Response
+    public function update(string $customerAccount, CallQueueGroup $group): Response
     {
-        return $this->connector->send(new UpdateCallQueueGroupRequest($group));
+        return $this->connector->send(new UpdateCallQueueGroupRequest($customerAccount, $group));
     }
 
-    public function destroy(int $id): Response
+    public function destroy(string $customerAccount, int $id): Response
     {
-        return $this->connector->send(new DeleteCallQueueGroupRequest($id));
+        return $this->connector->send(new DeleteCallQueueGroupRequest($customerAccount, $id));
     }
 }
