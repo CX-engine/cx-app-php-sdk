@@ -8,9 +8,13 @@ abstract class Entity
     {
         $data = get_object_vars($this);
 
-        return $filter
-            ? array_filter($data, fn ($v) => $v !== null)
-            : $data;
+        if ($filter) {
+            unset($data['id']);
+
+            return array_filter($data, fn ($v) => $v !== null);
+        }
+
+        return $data;
     }
 
     public static function fromArray(array $data): static
