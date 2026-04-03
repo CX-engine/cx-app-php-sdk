@@ -13,6 +13,7 @@ use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\ExportCtisRequest;
 use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\ImportCtisRequest;
 use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\BulkDeleteCtisRequest;
 use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\LookupCtiRequest;
+use CXEngine\AppSdk\Requests\SmartRoutings\Ctis\RegenerateCtiTokenRequest;
 
 class CtiResource extends SmartRoutingsResource
 {
@@ -54,6 +55,11 @@ class CtiResource extends SmartRoutingsResource
     public function bulkDestroy(string $customerAccount, array $ids): Response
     {
         return $this->connector->send(new BulkDeleteCtisRequest($customerAccount, $ids));
+    }
+
+    public function regenerateToken(string $customerAccount, int $id): Response
+    {
+        return $this->connector->send(new RegenerateCtiTokenRequest($customerAccount, $id));
     }
 
     public function lookup(string $customerAccount, array $params = []): Response
