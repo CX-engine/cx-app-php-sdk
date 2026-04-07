@@ -24,8 +24,18 @@ class CreateCallQueueTimeSpanRequest extends CustomerScopedRequest implements Ha
         parent::__construct($customerAccount);
     }
 
+    protected function defaultQuery(): array
+    {
+        return array_merge(parent::defaultQuery(), [
+            'time_spanable_id' => $this->timeSpan->time_spanable_id,
+            'time_spanable_type' => $this->timeSpan->time_spanable_type,
+        ]);
+    }
+
     protected function defaultBody(): array
     {
-        return $this->timeSpan->toArray(filter: true);
+        return collect($this->timeSpan->toArray(filter: true))
+            ->except('time_spanable_id', 'time_spanable_type')
+            ->all();
     }
 }

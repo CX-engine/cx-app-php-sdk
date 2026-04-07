@@ -24,8 +24,18 @@ class CreateCallQueueExceptionRequest extends CustomerScopedRequest implements H
         parent::__construct($customerAccount);
     }
 
+    protected function defaultQuery(): array
+    {
+        return array_merge(parent::defaultQuery(), [
+            'exceptionable_id' => $this->exception->exceptionable_id,
+            'exceptionable_type' => $this->exception->exceptionable_type,
+        ]);
+    }
+
     protected function defaultBody(): array
     {
-        return $this->exception->toArray(filter: true);
+        return collect($this->exception->toArray(filter: true))
+            ->except('exceptionable_id', 'exceptionable_type')
+            ->all();
     }
 }

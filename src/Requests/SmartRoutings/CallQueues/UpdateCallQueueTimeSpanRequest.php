@@ -26,6 +26,8 @@ class UpdateCallQueueTimeSpanRequest extends CustomerScopedRequest implements Ha
 
     protected function defaultBody(): array
     {
-        return $this->timeSpan->toArray(filter: true);
+        return collect($this->timeSpan->toArray(filter: true))
+            ->except('time_spanable_id', 'time_spanable_type')
+            ->all();
     }
 }

@@ -26,6 +26,8 @@ class UpdateCallQueueExceptionRequest extends CustomerScopedRequest implements H
 
     protected function defaultBody(): array
     {
-        return $this->exception->toArray(filter: true);
+        return collect($this->exception->toArray(filter: true))
+            ->except('exceptionable_id', 'exceptionable_type')
+            ->all();
     }
 }
