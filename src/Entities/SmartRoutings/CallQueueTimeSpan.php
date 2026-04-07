@@ -8,7 +8,7 @@ class CallQueueTimeSpan extends Entity
         public ?int $id = null,
         public ?string $reference = null,
         public ?string $destination = null,
-        public ?string $day_of_week = null,
+        public ?int $day_of_week = null,
         public ?string $date_full = null,
         public ?string $start_time = null,
         public ?string $end_time = null,
