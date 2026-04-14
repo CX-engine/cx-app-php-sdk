@@ -14,6 +14,7 @@ use Saloon\PaginationPlugin\Contracts\HasPagination;
 use Saloon\RateLimitPlugin\Contracts\RateLimitStore;
 use CXEngine\AppSdk\Requests\Auth\LoginRequest;
 use CXEngine\AppSdk\Requests\Auth\SwitchToRequest;
+use CXEngine\AppSdk\Requests\ResolveCustomerRequest;
 use CXEngine\AppSdk\Exceptions\AuthenticationException;
 use CXEngine\AppSdk\Resources\SmartRoutings\RoutingContactResource;
 use CXEngine\AppSdk\Resources\SmartRoutings\RoutingFieldResource;
@@ -135,6 +136,11 @@ class CxEngineConnector extends Connector implements HasPagination
                 return $response->json('data') ?? [];
             }
         };
+    }
+
+    public function resolveCustomer(string $customerAccount): Response
+    {
+        return $this->send(new ResolveCustomerRequest($customerAccount));
     }
 
     public function routingContacts(): RoutingContactResource
