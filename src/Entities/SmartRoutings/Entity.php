@@ -9,7 +9,7 @@ abstract class Entity
         $data = get_object_vars($this);
 
         if ($filter) {
-            unset($data['id']);
+            unset($data['id'], $data['customer_id']);
 
             return array_filter($data, fn ($v) => $v !== null);
         }
